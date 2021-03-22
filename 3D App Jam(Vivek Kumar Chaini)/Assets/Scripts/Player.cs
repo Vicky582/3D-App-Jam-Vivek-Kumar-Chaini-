@@ -16,10 +16,10 @@ public class Player : MonoBehaviour
 
     Rigidbody rb;
 
-    public static Player self;
+    public static Player Instance;
     private void OnEnable()
     {
-        self = this;
+        Instance = this;
     }
 
     void Start()

@@ -33,6 +33,5 @@ public class Sphere : MonoBehaviour
             followPLayer = true;
             player = collision.gameObject;
         }
-        
 	}
 }
