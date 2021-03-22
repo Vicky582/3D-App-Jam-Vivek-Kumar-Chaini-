@@ -7,6 +7,7 @@ public class ChainSphere : MonoBehaviour
     
     public float speed;
     public bool followPlayer;
+    public bool collided;
     private GameObject player;
     void Start()
     {
@@ -32,9 +33,16 @@ public class ChainSphere : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && !collided)
         {
             followPlayer = true;
+            GameManager.Instance.totalSphereNumbers--;
+            collided = true;
+
+            if(GameManager.Instance.totalSphereNumbers == 0)
+            {
+                GameManager.Instance.GameWin();
+            }
         }
 
     }

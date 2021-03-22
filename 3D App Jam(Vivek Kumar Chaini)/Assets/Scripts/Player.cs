@@ -13,7 +13,6 @@ public class Player : MonoBehaviour
     public GameObject enemy;
     public GameObject chain;
 
-
     Rigidbody rb;
 
     public static Player Instance;
@@ -43,15 +42,14 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Chain"))
         {
-            chainColor = GetComponent<Renderer>().material.color;
+            chainColor = GetComponent<Renderer>().material.GetColor("_Color");
             collision.gameObject.GetComponent<Renderer>().material.SetColor("_Color", chainColor);
-            return;
         }
         else if (collision.gameObject.CompareTag("Enemy"))
         {
-            enemyColor = enemy.GetComponent<Renderer>().material.color;
-            collision.gameObject.GetComponent<Renderer>().material.GetColor("_Color");
+            enemyColor = enemy.GetComponent<Renderer>().material.GetColor("_Color");
             GetComponent<Renderer>().material.SetColor("_Color", enemyColor);
+            GameManager.Instance.GameOver();
             return;
         }
     }

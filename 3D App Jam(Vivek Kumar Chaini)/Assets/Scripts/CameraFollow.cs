@@ -8,8 +8,6 @@ public class CameraFollow : MonoBehaviour
     public float smoothTime = 0.3f;
     public float height = 50f;
 
-    Vector3 vel = Vector3.zero;
-
     void Update()
     {
         Vector3 pos = new Vector3();
