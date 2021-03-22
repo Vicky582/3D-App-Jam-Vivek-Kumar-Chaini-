@@ -23,10 +23,12 @@ public class GameManager : MonoBehaviour
     public GameObject sphere;
 
     [Header("Others")]
+    public bool gameIsPaused = false;
     public Text score;
     public GameObject gameOverPanel;
     public GameObject gameWinPanel;
     public GameObject scoreText;
+    public GameObject gamePausedPanel;
     public Player playerScript;
     public Enemy enemyScript;
     public ChainSphere sphereScript;
@@ -38,7 +40,24 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        score.text = "More "+ totalSphereNumbers + " to go!! ".ToString();
+        score.text = "More "+ totalSphereNumbers + " black balls to go!! ".ToString();
+
+        if(gameIsPaused)
+        {
+            Time.timeScale = 0;
+            GamePaused();
+        }
+        else
+        {
+            Time.timeScale = 1;
+            GameResumed();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            gameIsPaused = !gameIsPaused;
+        }
+
     }
 
     void SphereSpawn()
@@ -54,7 +73,6 @@ public class GameManager : MonoBehaviour
     {
         gameOverPanel.SetActive(true);
         scoreText.SetActive(false);
-        Time.timeScale = 0;
         playerScript.enabled = false;
         sphereScript.enabled = false;
         enemyScript.enabled = false;
@@ -62,12 +80,22 @@ public class GameManager : MonoBehaviour
 
     public void GameWin()
     {
+        gamePausedPanel.SetActive(false);
         gameWinPanel.SetActive(true);
         scoreText.SetActive(false);
         Time.timeScale = 0;
         playerScript.enabled = false;
         sphereScript.enabled = false;
         enemyScript.enabled = false;
+    }
+
+    public void GamePaused()
+    {
+        gamePausedPanel.SetActive(true);
+    }
+    public void GameResumed()
+    {
+        gamePausedPanel.SetActive(false);
     }
 
     public void GameOverMenu()
