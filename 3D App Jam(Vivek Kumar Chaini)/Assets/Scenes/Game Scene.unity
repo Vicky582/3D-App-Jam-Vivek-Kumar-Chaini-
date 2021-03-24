@@ -1369,7 +1369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45e75e8a0f0a19c47b655542e54354f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxNumberOfSpheres: 15
+  maxNumberOfSpheres: 1
   planeSize: {x: 100, y: 100}
   totalSphereNumbers: 0
   sphere: {fileID: 2720079092292557286, guid: 354506a20c9399a4aaaaa5fbf01a0c73, type: 3}
